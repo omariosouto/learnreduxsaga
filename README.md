@@ -1,6 +1,7 @@
 # Pesquisa sobre o Redux Saga
 
 - Midleware
+
   - Entre as actions e os reducers
   - alterar o conteúdo entre a action e o reducer
   - pode ser assíncrona
@@ -18,6 +19,15 @@
     - throttle
     - 2 requests sejam feitas ao mesmo tempo
       - garantir que as duas tão prontas para poder seguir
+
+- Generators: funções, percorremos parte delas sem executar a função por inteiro
+
+```js
+function* generator() {
+  yield; // para por aqui até terminar
+  yield; // terminou o outro veem pra ca
+}
+```
 
 ========================================
 
