@@ -1,15 +1,16 @@
 import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import * as TodoActions from "../store/actions";
+import * as ReposActions from "../store/githubRepos/actions";
 
-export const TodoList = ({ todos, addTodo }) => {
+export const TodoList = ({ repos, requestReposList }) => {
   return (
     <React.Fragment>
-      <button onClick={() => addTodo("alo alo w brazil")}>Add todo</button>
+      <button onClick={() => requestReposList()}>Load repos</button>
+      <div>{repos.loading && "Carregando..."}</div>
       <ul>
-        {todos.map(todo => {
-          return <li key={todo.id}>{todo.text}</li>;
+        {repos.data.map(todo => {
+          return <li key={todo.id}>{todo.name}</li>;
         })}
       </ul>
     </React.Fragment>
@@ -17,11 +18,13 @@ export const TodoList = ({ todos, addTodo }) => {
 };
 
 const mapStateToProps = state => ({
-  todos: state.todos.data
+  repos: state.repos
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(TodoActions, dispatch);
+const mapDispatchToProps = dispatch => {
+  const actionCreators = bindActionCreators(ReposActions, dispatch);
+  return actionCreators;
+};
 
 export const TodoListContainer = connect(
   mapStateToProps,

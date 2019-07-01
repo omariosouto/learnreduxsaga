@@ -29,6 +29,13 @@ function* generator() {
 }
 ```
 
+## Fluxo de criar um request de algo
+
+- 3 ações
+  - principal (request)
+    - success
+    - error
+
 ========================================
 
 ## Links
