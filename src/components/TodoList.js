@@ -1,12 +1,12 @@
 import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import * as ReposActions from "../store/githubRepos/actions";
+import { Creators as GithubReposCreators } from "../store/ducks/githubRepos/index";
 
-export const TodoList = ({ repos, requestReposList }) => {
+export const TodoList = ({ repos, fetchReposList }) => {
   return (
     <React.Fragment>
-      <button onClick={() => requestReposList()}>Load repos</button>
+      <button onClick={() => fetchReposList()}>Load repos</button>
       <div>{repos.loading && "Carregando..."}</div>
       <ul>
         {repos.data.map(todo => {
@@ -22,7 +22,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => {
-  const actionCreators = bindActionCreators(ReposActions, dispatch);
+  const actionCreators = bindActionCreators(GithubReposCreators, dispatch);
   return actionCreators;
 };
 

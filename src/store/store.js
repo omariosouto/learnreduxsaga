@@ -1,15 +1,14 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
+import { composeWithDevTools } from "redux-devtools-extension";
 import { rootSaga } from "./sagas";
-import { githubReposReducer } from "./githubRepos/reducer";
+import { reducers } from "./ducks";
 
 const sagaMiddleware = createSagaMiddleware();
 
 export const store = createStore(
-  combineReducers({
-    repos: githubReposReducer
-  }),
-  applyMiddleware(sagaMiddleware)
+  reducers,
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 
 sagaMiddleware.run(rootSaga);
